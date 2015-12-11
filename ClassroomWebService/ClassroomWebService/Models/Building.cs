@@ -16,10 +16,9 @@ namespace ClassroomWebService.Models
 
         public int ID { get; set; }
 
-        [Column("Building")]
         [Required]
         [StringLength(4)]
-        public string Building1 { get; set; }
+        public string Code { get; set; }
 
         [StringLength(255)]
         public string Name { get; set; }

@@ -47,7 +47,7 @@ namespace ClassroomWebService.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Building>()
-                .Property(e => e.Building1)
+                .Property(e => e.Code)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Building>()
