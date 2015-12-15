@@ -14,11 +14,13 @@ namespace ClassroomWebService.Models
             Resources = new HashSet<Resource>();
         }
 
-        public int ID { get; set; }
+        [Key]
+        [Column(Order = 0)]
+        [StringLength(4)]
+        public string BuildingCode { get; set; }
 
-        public int BuildingID { get; set; }
-
-        [Required]
+        [Key]
+        [Column(Order = 1)]
         [StringLength(5)]
         public string Number { get; set; }
 

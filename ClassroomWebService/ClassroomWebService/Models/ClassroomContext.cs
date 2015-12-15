@@ -14,7 +14,7 @@ namespace ClassroomWebService.Models
 
         public virtual DbSet<Audit> Audits { get; set; }
         public virtual DbSet<Building> Buildings { get; set; }
-        public virtual DbSet<ResourceCategory> ResourceCategories { get; set; }
+        public virtual DbSet<ResourceSection> ResourceSections { get; set; }
         public virtual DbSet<Resource> Resources { get; set; }
         public virtual DbSet<ResourceType> ResourceTypes { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
@@ -67,8 +67,16 @@ namespace ClassroomWebService.Models
                 .WithRequired(e => e.Building)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ResourceCategory>()
+            modelBuilder.Entity<ResourceSection>()
                 .Property(e => e.Description)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Resource>()
+                .Property(e => e.BuildingCode)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Resource>()
+                .Property(e => e.RoomNumber)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Resource>()
@@ -92,9 +100,18 @@ namespace ClassroomWebService.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<ResourceType>()
+                .HasMany(e => e.Resources)
+                .WithRequired(e => e.ResourceType)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ResourceType>()
                 .HasMany(e => e.ResourceTypes1)
                 .WithOptional(e => e.ResourceType2)
                 .HasForeignKey(e => e.ParentID);
+
+            modelBuilder.Entity<Room>()
+                .Property(e => e.BuildingCode)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Room>()
                 .Property(e => e.Number)
@@ -115,6 +132,12 @@ namespace ClassroomWebService.Models
             modelBuilder.Entity<Room>()
                 .Property(e => e.entry_user)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Room>()
+                .HasMany(e => e.Resources)
+                .WithRequired(e => e.Room)
+                .HasForeignKey(e => new { e.BuildingCode, e.RoomNumber })
+                .WillCascadeOnDelete(false);
         }
     }
 }

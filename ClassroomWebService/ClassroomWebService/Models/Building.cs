@@ -14,9 +14,7 @@ namespace ClassroomWebService.Models
             Rooms = new HashSet<Room>();
         }
 
-        public int ID { get; set; }
-
-        [Required]
+        [Key]
         [StringLength(4)]
         public string Code { get; set; }
 

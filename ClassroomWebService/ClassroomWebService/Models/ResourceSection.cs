@@ -6,10 +6,10 @@ namespace ClassroomWebService.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class ResourceCategory
+    public partial class ResourceSection
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ResourceCategory()
+        public ResourceSection()
         {
             Resources = new HashSet<Resource>();
         }

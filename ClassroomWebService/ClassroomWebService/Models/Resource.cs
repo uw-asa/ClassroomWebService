@@ -10,11 +10,17 @@ namespace ClassroomWebService.Models
     {
         public int ID { get; set; }
 
-        public int? RoomID { get; set; }
+        [Required]
+        [StringLength(4)]
+        public string BuildingCode { get; set; }
 
-        public int? ResourceCategoryID { get; set; }
+        [Required]
+        [StringLength(5)]
+        public string RoomNumber { get; set; }
 
-        public int? ResourceTypeID { get; set; }
+        public int? ResourceSectionID { get; set; }
+
+        public int ResourceTypeID { get; set; }
 
         public int? Length { get; set; }
 
@@ -35,7 +41,7 @@ namespace ClassroomWebService.Models
 
         public DateTime? modify_time { get; set; }
 
-        public virtual ResourceCategory ResourceCategory { get; set; }
+        public virtual ResourceSection ResourceSection { get; set; }
 
         public virtual ResourceType ResourceType { get; set; }
 
